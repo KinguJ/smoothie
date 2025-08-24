@@ -1,63 +1,36 @@
-import { EllipsisVertical, ShoppingCart, UserIcon } from "lucide-react";
+import { EllipsisVertical, ShoppingCart, UserIcon, X } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet, SheetContent, SheetTrigger,
-  SheetHeader, SheetTitle, SheetDescription
+  SheetHeader, SheetTitle, SheetDescription,
+  SheetClose
 } from "@/components/ui/sheet";
 import ModeToggle from "./mode-toggle";
+import UserButton from './user-button';
+import UserButtonMenu from "./user-button-menu";
 
 const Menu = () => {
   return (
     <div className="flex justify-end gap-3">
-      {/* Desktop */}
-      <nav className="md:flex hidden w-full max-w-xs gap-1">
-        <ModeToggle />
-        <Button asChild variant="ghost" className="gap-2">
-          <Link href="/cart">
-            <ShoppingCart className="size-4" />
-            Cart
-          </Link>
-        </Button>
-        <Button asChild className="gap-2">
-          <Link href="/sign-in">
-            <UserIcon className="size-4" />
-            Sign In
-          </Link>
-        </Button>
-      </nav>
-
       {/* Mobile */}
-      <nav className="md:hidden">
+      <nav className="md:flex hidden w-full max-w-xs gap-1">
+        <UserButton />
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Open menu">
-              <EllipsisVertical className="size-5" />
+            <Button variant="ghost" size="icon" aria-label="Open menu" className="cursor-pointer">
+              <EllipsisVertical className="cursor-pointer size-5" />
             </Button>
           </SheetTrigger>
 
-          <SheetContent className="p-4">
+          <SheetContent className="p-4 [&>button]:cursor-pointer">
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
-              <SheetDescription />
             </SheetHeader>
 
-            <div className="mt-4 space-y-2">
+            <div className="space-y-3">
+              <UserButtonMenu />
               <ModeToggle />
-
-              <Button asChild variant="ghost" className="w-full justify-start gap-2">
-                <Link href="/cart">
-                  <ShoppingCart className="size-4" />
-                  Cart
-                </Link>
-              </Button>
-
-              <Button asChild className="justify-start gap-2">
-                <Link href="/sign-in">
-                  <UserIcon className="size-4" />
-                  Sign In
-                </Link>
-              </Button>
             </div>
           </SheetContent>
         </Sheet>

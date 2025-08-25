@@ -1,41 +1,147 @@
-import { hashSync } from 'bcrypt-ts-edge';
+// db/sample-products.ts
+import type { Prisma } from '@prisma/client';
 
-// How many regular users you want:
-const USER_COUNT = 98;
+type NewProduct = Prisma.ProductCreateInput;
 
-// Pre-hash once (faster than hashing per user)
-const adminPwd = hashSync('Admin123!', 10);
-const userPwd  = hashSync('123456', 10);
-
-// Exactly 2 admins
-const admins = [
+export const smoothieProducts: NewProduct[] = [
   {
-    name: 'Admin One',
-    email: 'admin1@example.com',
-    password: adminPwd,
-    role: 'admin',
-    emailVerified: new Date(), // optional
+    name: 'Berry Bliss Smoothie',
+    slug: 'berry-bliss-smoothie',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'A vibrant blend of strawberries, blueberries, and raspberries with a hint of pomegranate. Berry Bliss delivers a naturally sweet, antioxidant-rich sip with a refreshing tang and silky texture—perfect for a morning boost or a post-workout chill.',
+    stock: 50,
+    price: '129.90',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: true,
   },
   {
-    name: 'Admin Two',
-    email: 'admin2@example.com',
-    password: adminPwd,
-    role: 'admin',
-    emailVerified: new Date(), // optional
+    name: 'Mango Tango Smoothie',
+    slug: 'mango-tango-smoothie',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Sun-ripened mango meets a splash of orange and a whisper of lime. Mango Tango is bright, creamy, and tropical with a velvet finish that tastes like summer in a cup.',
+    stock: 60,
+    price: '119.00',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: false,
+  },
+  {
+    name: 'Green Power Smoothie',
+    slug: 'green-power-smoothie',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Spinach and kale team up with green apple and cucumber for a crisp, garden-fresh flavor. Finished with lemon and a touch of ginger, Green Power is clean, energizing, and deliciously balanced.',
+    stock: 45,
+    price: '104.50',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: false,
+  },
+  {
+    name: 'Peanut Choco Boost',
+    slug: 'peanut-choco-boost',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Roasted peanut, natural cocoa, and banana come together for a rich, milkshake-like smoothie without the guilt. Creamy, nutty, and perfectly sweet for sustained energy.',
+    stock: 40,
+    price: '142.00',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: false,
+  },
+  {
+    name: 'Matcha Zen Smoothie',
+    slug: 'matcha-zen-smoothie',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Ceremonial-grade matcha blended with banana and a hint of vanilla for a calm, creamy green sip. Subtle sweetness meets gentle tea notes for focused, smooth energy.',
+    stock: 35,
+    price: '155.00',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: true,
+  },
+  {
+    name: 'Tropical Breeze',
+    slug: 'tropical-breeze',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Pineapple, coconut, and passion fruit swirl into a breezy island blend. Light, aromatic, and juicy with a soft coconut finish that lingers pleasantly.',
+    stock: 55,
+    price: '110.00',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: false,
+  },
+  {
+    name: 'Purple Fuel Smoothie',
+    slug: 'purple-fuel-smoothie',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Blackberries and blackcurrant layered with banana for a deep, jammy flavor. Purple Fuel packs natural vitamins with a smooth, luxurious mouthfeel.',
+    stock: 48,
+    price: '136.75',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: false,
+  },
+  {
+    name: 'Citrus Glow',
+    slug: 'citrus-glow',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Orange, mandarin, and grapefruit sparkle with a touch of carrot and ginger. Citrus Glow is bright and zesty with a gentle warmth for a feel-good, skin-happy start.',
+    stock: 52,
+    price: '99.90',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: false,
+  },
+  {
+    name: 'Dates & Tahini Delight',
+    slug: 'dates-and-tahini-delight',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Medjool dates and creamy tahini blended with banana and a hint of cinnamon. Naturally sweet, sesame-kissed, and incredibly satisfying with balanced, slow energy.',
+    stock: 38,
+    price: '168.00',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: true,
+  },
+  {
+    name: 'Pistachio Dream',
+    slug: 'pistachio-dream',
+    category: 'Smoothies',
+    brand: 'Shifa Kitchen',
+    images: [],
+    description:
+      'Toasted pistachio, banana, and a touch of vanilla create a silky, nutty treat. Pistachio Dream is subtle, elegant, and wonderfully creamy from first sip to last.',
+    stock: 30,
+    price: '198.00',
+    rating: '0',
+    numReviews: 0,
+    isFeatured: true,
   },
 ];
-
-// Many regular users
-const users = Array.from({ length: USER_COUNT }, (_, i) => ({
-  name: `User ${i + 1}`,
-  email: `user${i + 1}@example.com`,
-  password: userPwd,
-  role: 'user',
-  // image/emailVerified are optional; omitted
-}));
-
-const sampleData = {
-  users: [...admins, ...users],
-};
-
-export default sampleData;

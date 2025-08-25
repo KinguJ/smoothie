@@ -17,7 +17,7 @@ const CategoriesDrawer = async () => {
   return (
     <Drawer direction='left'>
       <DrawerTrigger asChild>
-        <Button variant='outline'>
+        <Button variant='outline' className='cursor-pointer'>
           <MenuIcon />
         </Button>
       </DrawerTrigger>

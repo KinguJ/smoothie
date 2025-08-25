@@ -17,7 +17,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { createProduct, updateProduct } from '@/lib/actions/product.actions';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
-import { Checkbox } from '@radix-ui/react-checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 import { SubmitHandler } from 'react-hook-form';
 import { UploadButton } from '@/lib/uploadthing';
 
@@ -139,7 +139,7 @@ const ProductForm = ({
                     <Input placeholder="Enter slug" {...field} />
                     <Button
                       type="button"
-                      className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-1 mt-2"
+                      className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-1 mt-2 cursor-pointer"
                       onClick={() => {
                         const name = form.getValues('name') || '';
                         form.setValue('slug', slugify(name, { lower: true, strict: true }));
@@ -234,14 +234,27 @@ const ProductForm = ({
                   <CardContent className="space-y-2 mt-2 min-h-48">
                     <div className="flex-start space-x-2">
                       {images.map((image: string) => (
-                        <Image
-                          key={image}
-                          src={image}
-                          alt="product image"
-                          className="w-20 h-20 object-cover object-center rounded-sm"
-                          width={100}
-                          height={100}
-                        />
+                        <div key={image} className="relative inline-block">
+                          <Image
+                            src={image}
+                            alt="product image"
+                            className="w-20 h-20 object-cover object-center rounded-sm"
+                            width={100}
+                            height={100}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const updatedImages = images.filter((img) => img !== image);
+                              form.setValue('images', updatedImages);
+                              toast.success('Image removed');
+                            }}
+                            className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center cursor-pointer"
+                            aria-label="Remove image"
+                          >
+                            ×
+                          </button>
+                        </div>
                       ))}
                       {/* UploadButton here when you wire it back */}
                       <FormControl>
@@ -266,14 +279,15 @@ const ProductForm = ({
 
         {/* Featured + Banner */}
         <div className="upload-field">
-          Featured Product
+          <FormLabel className="mb-2 block text-lg font-semibold">Featured Product</FormLabel>
           <Card>
-            <CardContent className="space-y-2 mt-2">
+            <CardContent className="space-y-4 mt-2">
+              {/* isFeatured checkbox */}
               <FormField
                 control={form.control}
                 name="isFeatured"
                 render={({ field }) => (
-                  <FormItem className="space-x-2 items-center">
+                  <FormItem className="flex items-center space-x-2">
                     <FormControl>
                       <Checkbox
                         checked={!!field.value}
@@ -284,15 +298,51 @@ const ProductForm = ({
                   </FormItem>
                 )}
               />
-              {isFeatured && banner && (
-                <Image
-                  src={banner}
-                  alt="banner image"
-                  className="w-full object-cover object-center rounded-sm"
-                  width={1920}
-                  height={680}
-                />
+
+              {/* Has Banner Image checkbox */}
+              {isFeatured && (
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="hasBanner"
+                    checked={!!banner}
+                    onChange={(e) => {
+                      if (!e.target.checked) {
+                        form.setValue('banner', null);
+                        toast.success('Banner removed');
+                      }
+                    }}
+                  />
+                  <label htmlFor="hasBanner" className="text-sm">
+                    Has Banner Image?
+                  </label>
+                </div>
               )}
+
+              {/* Banner preview + remove */}
+              {isFeatured && banner && (
+                <div className="relative w-full mt-2">
+                  <Image
+                    src={banner}
+                    alt="banner image"
+                    className="w-full object-cover object-center rounded-sm"
+                    width={1920}
+                    height={680}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      form.setValue('banner', null);
+                      toast.success('Banner image removed');
+                    }}
+                    className="absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 text-lg flex items-center justify-center cursor-pointer"
+                    aria-label="Remove banner image"
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
+
 
               {/* Upload banner when you re-enable uploadthing */}
               {isFeatured && !banner && (
@@ -333,7 +383,7 @@ const ProductForm = ({
             type="submit"
             size="lg"
             disabled={form.formState.isSubmitting}
-            className="button col-span-2 w-full"
+            className="button col-span-2 w-full cursor-pointer"
           >
             {form.formState.isSubmitting ? 'Submitting' : `${type} Product`}
           </Button>

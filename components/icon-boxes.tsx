@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { DollarSign, Headset, ShoppingBag, WalletCards } from 'lucide-react';
+import { Leaf, Snowflake, ChefHat, Heart } from 'lucide-react';
 
 const IconBoxes = () => {
   return (
@@ -7,31 +7,31 @@ const IconBoxes = () => {
       <Card>
         <CardContent className='grid gap-4 md:grid-cols-4 p-4 '>
           <div className='space-y-2'>
-            <ShoppingBag />
-            <div className='text-sm font-bold'>Free Shipping</div>
+            <Leaf />
+            <div className='text-sm font-bold'>Fresh Ingredients</div>
             <div className='text-sm text-muted-foreground'>
-              Free shipping for order above $100
+              We use only ripe, seasonal fruits and organic add-ins for the purest taste in every sip.
             </div>
           </div>
           <div className='space-y-2'>
-            <DollarSign />
-            <div className='text-sm font-bold'>Money Back Guarantee</div>
+            <Snowflake />
+            <div className='text-sm font-bold'>Cold & Ready</div>
             <div className='text-sm text-muted-foreground'>
-              Within 30 days for an exchange
+              Smoothies are blended fresh and chilled — perfect for on-the-go energy or cooling down.
             </div>
           </div>
           <div className='space-y-2'>
-            <WalletCards />
-            <div className='text-sm font-bold'>Flexible Payment</div>
+            <ChefHat />
+            <div className='text-sm font-bold'>Wellness First</div>
             <div className='text-sm text-muted-foreground'>
-              Pay with credit card, PayPal or COD
+              Smoothies designed to energize your body and mind — from immunity to glow.
             </div>
           </div>
           <div className='space-y-2'>
-            <Headset />
-            <div className='text-sm font-bold'>24/7 Support</div>
+            <Heart  />
+            <div className='text-sm font-bold'>Made with Love</div>
             <div className='text-sm text-muted-foreground'>
-              Get support at any time
+              Each recipe is carefully curated in our kitchen with creativity and care.
             </div>
           </div>
         </CardContent>

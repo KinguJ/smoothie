@@ -133,14 +133,14 @@ const UpdateUserForm = ({
                   onValueChange={field.onChange}
                   value={field.value.toString()}
                 >
-                  <FormControl>
+                  <FormControl className='cursor-pointer'>
                     <SelectTrigger>
                       <SelectValue placeholder='Select a role' />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent > 
                     {USER_ROLES.map((role) => (
-                      <SelectItem key={role} value={role}>
+                      <SelectItem key={role} value={role} className='cursor-pointer'>
                         {role.charAt(0).toUpperCase() + role.slice(1)}
                       </SelectItem>
                     ))}
@@ -154,7 +154,7 @@ const UpdateUserForm = ({
         <div className='flex-between mt-6'>
           <Button
             type='submit'
-            className='w-full'
+            className='w-full cursor-pointer'
             disabled={form.formState.isSubmitting}
           >
             {form.formState.isSubmitting ? 'Submitting...' : 'Update User'}

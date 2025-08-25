@@ -10,7 +10,6 @@ const HomePage = async () => {
   return (
     <div className='space-y-8'>
       {featuredProducts.length > 0 && <ProductCarousel data={featuredProducts} />}
-      <h2 className='h2-bold'>Latest Products</h2>
       <ProductList title='Newest Arrivals' data={latestProducts} />
       <ViewAllProductsButton />
       <IconBoxes />

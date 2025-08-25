@@ -10,7 +10,7 @@ const Header = () => {
       <div className='wrapper flex-between'>
         <div className='flex-start'>
           <CategoriesDrawer />
-          <Link href='/' className='flex-start'>
+          <Link href='/' className='flex-start pl-4'>
             <Image
               priority={true}
               src='/images/logo.svg'

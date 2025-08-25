@@ -29,10 +29,12 @@ After logging in, open the top-right menu or click the user icon to access the a
 ## 🛠️ Tech Stack
 
 - **Frontend**: [Next.js](https://nextjs.org/) + [React](https://react.dev/)  
-- **Database**: [PostgreSQL](https://www.postgresql.org/)  
+- **Database**: [PostgreSQL](https://www.postgresql.org/) (hosted on [Neon](https://neon.tech/))  
+- **Authentication**: NextAuth.js  
+- **File Uploads**: [UploadThing](https://uploadthing.com/)  
 - **UI Library**: [Shadcn UI](https://ui.shadcn.com/)  
 - **Styling**: Tailwind CSS  
-
+- **Hosting**: [Vercel](https://vercel.com/) → [Live Demo](https://smoothie-five.vercel.app/) 
 ---
 
 ## 📌 Current Status

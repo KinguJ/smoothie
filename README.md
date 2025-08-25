@@ -52,7 +52,7 @@ After logging in, open the top-right menu or click the user icon to access the a
 
 1. Clone the repository  
    ```bash
-   git clone https://github.com/yourusername/smoothie-shop.git
+   git clone https://github.com/KinguJ/smoothie
    cd smoothie-shop
    ```
 

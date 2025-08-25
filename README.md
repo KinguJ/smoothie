@@ -2,6 +2,7 @@
 
 This project is a work-in-progress web application built as part of my coursework.  
 The main goal is to provide a simple, easily editable website with a user-friendly dashboard for managing content.  
+For the Live Demo [Click](https://smoothie-five.vercel.app/) 
 
 ---
 

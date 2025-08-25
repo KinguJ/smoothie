@@ -5,16 +5,17 @@ import ProductPrice from './product-price';
 import { Product } from '@/types';
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <Card className='w-full max-w-sm'>
+    <Card className='w-full max-w-sm mx-auto'>
       <CardHeader className='p-0 items-center'>
-        <Link href={`/product/${product.slug}`}>
+        <Link href={`/product/${product.slug}`} className="block">
           <Image
-            priority={true}
+            priority
             src={product.images![0]}
             alt={product.name}
-            className='aspect-square object-cover rounded'
-            height={300}
-            width={300}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full h-auto aspect-square object-cover rounded"
           />
         </Link>
       </CardHeader>

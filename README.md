@@ -87,7 +87,7 @@ After logging in, open the top-right menu or click the user icon to access the a
 4. Set up the database with Prisma  
    ```bash
    npx prisma generate
-   npx prisma migrate dev --name final-tut
+   npx prisma migrate dev --name init
    ```
 
 5. Run the development server  
